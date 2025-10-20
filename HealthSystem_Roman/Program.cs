@@ -33,17 +33,27 @@ namespace HealthSystem_Roman
             ShowHUD();
             Heal(10);
             ShowHUD();
+            TakeDamage(-20);
+            ShowHUD();
+            IncreaseXP(-100);
+            ShowHUD();
             IncreaseXP(350);
             ShowHUD();
             RegenerateShield(50);
             ShowHUD();
             TakeDamage(100);
             ShowHUD();
+            Heal(-50);
+            ShowHUD();
+            RegenerateShield(-10);
+            ShowHUD();
             TakeDamage(50);
+            Revive();
             ShowHUD();
             TakeDamage(20);
             ShowHUD();
             TakeDamage(250);
+            Revive();
             ShowHUD();
         }
 
@@ -52,6 +62,8 @@ namespace HealthSystem_Roman
             if(damage < 0)
             {
                 Console.WriteLine("Value Range Error");
+                Console.WriteLine($"Can't take {damage} damage");
+                Console.WriteLine();
                 return;
             }
 
@@ -91,8 +103,6 @@ namespace HealthSystem_Roman
                 Console.WriteLine($"Remaining Health: {health}, Shield: {shield}");
                 Console.WriteLine();
                 Console.WriteLine("Enemy has Defeated you.");
-                Console.WriteLine();
-                Revive();
             }
             else
             {
@@ -106,6 +116,7 @@ namespace HealthSystem_Roman
             if (hp < 0)
             {
                 Console.WriteLine("Value Range Error");
+                Console.WriteLine($"Can't heal {hp} health");
                 Console.WriteLine();
             }
             else
@@ -122,6 +133,8 @@ namespace HealthSystem_Roman
             if (hp < 0)
             {
                 Console.WriteLine("Value Range Error");
+                Console.WriteLine($"Can't regenerate {hp} shield");
+                Console.WriteLine();
             }
             else
             {
@@ -138,6 +151,7 @@ namespace HealthSystem_Roman
             {
                 lives--;
                 Console.WriteLine($"You are revived! You have {lives} lives left.");
+                Console.WriteLine();
                 health = 100;
                 shield = 100;
             }
@@ -178,6 +192,7 @@ namespace HealthSystem_Roman
             if (exp < 0)
             {
                 Console.WriteLine("Value Range Error");
+                Console.WriteLine($"Can't get {exp} xp");
                 Console.WriteLine();
                 return;
             }
@@ -277,18 +292,18 @@ namespace HealthSystem_Roman
             health = 10;
             lives = 3;
             TakeDamage(25);
-            Debug.Assert(shield == 100);
-            Debug.Assert(health == 100);
-            Debug.Assert(lives == 2);
+            Debug.Assert(shield == 0);
+            Debug.Assert(health == 0);
+            Debug.Assert(lives == 3);
 
             // TakeDamage() - shield, health, and lives
             shield = 5;
             health = 100;
             lives = 3;
             TakeDamage(110);
-            Debug.Assert(shield == 100);
-            Debug.Assert(health == 100);
-            Debug.Assert(lives == 2);
+            Debug.Assert(shield == 0);
+            Debug.Assert(health == 0);
+            Debug.Assert(lives == 3);
 
             // TakeDamage() - negative input
             shield = 50;
